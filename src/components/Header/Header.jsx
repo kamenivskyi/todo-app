@@ -16,7 +16,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { useStyles } from './Header.styles';
+import { useStyles } from './HeaderStyles';
 
 const Header = ({ open, handleDrawerOpen }) => {
   const classes = useStyles();

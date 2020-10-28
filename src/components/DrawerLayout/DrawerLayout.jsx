@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import { connect, useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,13 +23,18 @@ import { TextField } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import Header from '../Header/Header';
-import ListItems from '../ListItems/ListItems';
-import { useStyles } from './DrawerLayout.styles';
+// import TodoItems from '../TodoItems/TodoItems';
+import { useStyles } from './DrawerLayoutStyles';
 import Lists from '../Lists/Lists';
 
-const DrawerLayout = ({ handleModalOpen, addNewList, lists }) => {
+import { addNewList } from '../../redux/lists/listsActions';
+
+const DrawerLayout = ({ dispatch }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  
+  const lists = useSelector(state => state.lists.lists);
+  
   const classes = useStyles();
   const theme = useTheme();
 
@@ -54,7 +60,7 @@ const DrawerLayout = ({ handleModalOpen, addNewList, lists }) => {
     e.preventDefault();
 
     if (inputValue.trim().length > 2) {
-      addNewList(inputValue);
+      dispatch(addNewList(inputValue));
       setInputValue('');
     }
     else {
@@ -108,7 +114,9 @@ const DrawerLayout = ({ handleModalOpen, addNewList, lists }) => {
           </ListItem>
         </List>
         <Divider />
+
         <Lists lists={lists} />
+
         <form onSubmit={onAddNewList}>
           <ListItem>
             <ListItemIcon onClick={handleDrawerOpen}>
@@ -136,4 +144,4 @@ const DrawerLayout = ({ handleModalOpen, addNewList, lists }) => {
   );
 };
 
-export default DrawerLayout;
+export default connect()(DrawerLayout);

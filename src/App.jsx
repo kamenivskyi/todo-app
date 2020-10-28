@@ -1,42 +1,33 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import DrawerLayout from './components/DrawerLayout/DrawerLayout';
-import AddTodoModal from './components/AddTodoModal/AddTodoModal';
+
+// import AddTodoModal from './components/AddTodoModal/AddTodoModal';
 
 import './App.css';
 
 function App() {
-  const [lists, setLists] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const addNewList = (title) => {
-    const list = {
-      title,
-      id: Math.random(),
-      todos: [],
-    };
+  // const handleModalOpen = () => {
+  //   setOpen(true);
+  // };
 
-    setLists([...lists, list]);
-  }
-
-  const handleModalOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <div className='App'>
       <DrawerLayout 
-        handleModalOpen={handleModalOpen} 
-        addNewList={addNewList} 
-        lists={lists} 
       />
-      <AddTodoModal open={open} handleClose={handleClose} />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  lists: state.lists,
+})
+
+export default connect(mapStateToProps)(App);

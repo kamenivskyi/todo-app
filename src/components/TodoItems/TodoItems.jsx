@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListItems = ({ lists }) => {
+const TodoItems = ({ items }) => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
 
@@ -36,7 +36,7 @@ const ListItems = ({ lists }) => {
 
   return (
     <List className={classes.root}>
-      {lists.map((value) => {
+      {items.map((item) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
@@ -69,4 +69,4 @@ const ListItems = ({ lists }) => {
   );
 };
 
-export default ListItems;
+export default TodoItems;
