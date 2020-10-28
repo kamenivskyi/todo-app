@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
-
-import Header from '../Header/Header';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,23 +9,24 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import { TextField } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
+import Header from '../Header/Header';
 import ListItems from '../ListItems/ListItems';
-
 import { useStyles } from './DrawerLayout.styles';
-import { InputBase, TextField } from '@material-ui/core';
+import Lists from '../Lists/Lists';
 
-const DrawerLayout = ({ handleModalOpen }) => {
+const DrawerLayout = ({ handleModalOpen, addNewList, lists }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const classes = useStyles();
@@ -52,6 +49,18 @@ const DrawerLayout = ({ handleModalOpen }) => {
     [classes.drawerOpen]: open,
     [classes.drawerClose]: !open,
   });
+
+  const onAddNewList = (e) => {
+    e.preventDefault();
+
+    if (inputValue.trim().length > 2) {
+      addNewList(inputValue);
+      setInputValue('');
+    }
+    else {
+      alert('Input field length must be greater 2!');
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -99,14 +108,20 @@ const DrawerLayout = ({ handleModalOpen }) => {
           </ListItem>
         </List>
         <Divider />
-        <List>
-          <ListItem button onClick={handleModalOpen}>
-            <ListItemIcon>
+        <Lists lists={lists} />
+        <form onSubmit={onAddNewList}>
+          <ListItem>
+            <ListItemIcon onClick={handleDrawerOpen}>
               <AddIcon />
             </ListItemIcon>
-            <ListItemText primary={'Add new todo'} />
+            <TextField 
+              id="standard-basic" 
+              label="New list"  
+              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue}
+            />
           </ListItem>
-        </List>
+        </form>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />

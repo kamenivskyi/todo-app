@@ -33,7 +33,7 @@ const Header = ({ open, handleDrawerOpen }) => {
     <AppBar
       position='fixed'
       color='primary'
-      style={{ backgroundColor: '#00b159' }}
+      style={{ backgroundColor: '#346fef' }}
       className={appBarClasses}
     >
       <Toolbar>
