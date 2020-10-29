@@ -6,19 +6,32 @@ import { TextField, Typography } from '@material-ui/core';
 
 import TodoItems from '../../components/TodoItems/TodoItems';
 import { getList } from '../../redux/lists/listsActions';
-
+import useInput from '../../hooks/useInput';
 
 const ListElementPage = ({ list, getList }) => {
   const { id } = useParams();
+  const { bind, clearInput } = useInput('');
 
   useEffect(() => {
     getList(id);
   }, [id]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(bind.value)
+    clearInput();
+  }
+
   return (
     <div>
       <Typography>{list?.title}</Typography>
-      <TextField id="standard-basic" label="New todo" />
+      <form onSubmit={handleSubmit}>
+        <TextField 
+          id="standard-basic" 
+          label="New todo" 
+          {...bind} 
+        />
+      </form>
       <TodoItems items={list?.todos} />
     </div>
   )

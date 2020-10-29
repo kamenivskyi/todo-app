@@ -3,7 +3,7 @@ import types from "./listsTypes";
 const initialState = {
   lists: [],
   listElement: {},
-}
+};
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
