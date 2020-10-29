@@ -8,12 +8,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    marginTop: '3.2rem'
   },
 }));
 
@@ -34,29 +35,37 @@ const TodoItems = ({ items }) => {
     setChecked(newChecked);
   };
 
+  if (items && items.length === 0) {
+    return (
+      <Typography variant='h6'>
+        No todos yet
+      </Typography>
+    )
+  }
+
   return (
     <List className={classes.root}>
-      {items.map((item) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {items && items.map((item) => {
+        const labelId = `checkbox-list-label-${item.title}`;
 
         return (
           <ListItem
-            key={value}
+            key={item.id}
             role={undefined}
             dense
             button
-            onClick={handleToggle(value)}
+            onClick={handleToggle(item)}
           >
             <ListItemIcon>
               <Checkbox
                 edge='start'
-                checked={checked.indexOf(value) !== -1}
+                checked={checked.indexOf(item) !== -1}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+            <ListItemText id={labelId} primary={item.title} />
             <ListItemSecondaryAction>
               <IconButton edge='end' aria-label='comments'>
                 <CommentIcon />

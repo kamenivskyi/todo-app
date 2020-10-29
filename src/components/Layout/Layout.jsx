@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { connect, useSelector } from 'react-redux';
+import { Switch, Route, NavLink, useLocation, Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,22 +22,24 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { TextField } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import { useStyles } from './LayoutStyles';
+
+// import TodoItems from '../TodoItems/TodoItems';
 
 import Header from '../Header/Header';
-// import TodoItems from '../TodoItems/TodoItems';
-import { useStyles } from './DrawerLayoutStyles';
 import Lists from '../Lists/Lists';
-
+import ListElementPage from '../../pages/ListElementPage/ListElementPage';
 import { addNewList } from '../../redux/lists/listsActions';
+import HomePage from '../../pages/HomePage';
 
 const DrawerLayout = ({ dispatch }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  
-  const lists = useSelector(state => state.lists.lists);
-  
   const classes = useStyles();
   const theme = useTheme();
+  const location = useLocation();
+  const lists = useSelector(state => state.lists.lists);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -88,30 +91,46 @@ const DrawerLayout = ({ dispatch }) => {
         </div>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <CheckCircleOutlineIcon />
-            </ListItemIcon>
-            <ListItemText primary='Complited' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <StarBorderIcon />
-            </ListItemIcon>
-            <ListItemText primary='Important' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <FormatListBulletedIcon />
-            </ListItemIcon>
-            <ListItemText primary='Active' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary='All' />
-          </ListItem>
+          <NavLink to='/all'>
+            <ListItem button>
+              <ListItemIcon>
+                <AllInclusiveIcon />
+              </ListItemIcon>
+              <ListItemText primary='All' />
+            </ListItem>
+          </NavLink>
+          <NavLink to='/done'>
+            <ListItem button>
+              <ListItemIcon>
+                <CheckCircleOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary='Done' />
+            </ListItem>
+          </NavLink>
+          <NavLink to='/important'>
+            <ListItem button>
+              <ListItemIcon>
+                <StarBorderIcon />
+              </ListItemIcon>
+              <ListItemText primary='Important' />
+            </ListItem>
+          </NavLink>
+          <NavLink to='/active'>
+            <ListItem button>
+              <ListItemIcon>
+                <FormatListBulletedIcon />
+              </ListItemIcon>
+              <ListItemText primary='Active' />
+            </ListItem>
+          </NavLink>
+          <NavLink to='/tasks'>
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary='Tasks' />
+            </ListItem>
+          </NavLink>
         </List>
         <Divider />
 
@@ -132,13 +151,18 @@ const DrawerLayout = ({ dispatch }) => {
         </form>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <Switch>
+          {location.pathname === '/' && <Redirect to='/tasks' />}
+          <Route exact component={HomePage} path='/tasks' />
+          <Route component={ListElementPage} path='/lists/:id' />
+        </Switch>
+        {/* <div className={classes.toolbar} />
         <Typography paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
           doloribus autem corrupti cum aspernatur, doloremque a, quis aliquid,
           neque deserunt rem fugiat. Doloremque quae sunt autem voluptatum
           veritatis vero fuga.
-        </Typography>
+        </Typography> */}
       </main>
     </div>
   );
