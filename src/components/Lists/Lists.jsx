@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 const Lists = ({ lists }) => {
   return (
     <List>
-      {lists.map((list) => {
+      {lists?.map((list) => {
         return (
           <NavLink to={`/lists/${list.id}`} key={list.id}>
             <ListItem button>

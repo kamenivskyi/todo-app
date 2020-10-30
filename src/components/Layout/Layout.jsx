@@ -29,9 +29,9 @@ import { useStyles } from './LayoutStyles';
 
 import Header from '../Header/Header';
 import Lists from '../Lists/Lists';
-import ListElementPage from '../../pages/ListElementPage/ListElementPage';
 import { addNewList } from '../../redux/lists/listsActions';
 import HomePage from '../../pages/HomePage';
+import CurrentListPage from '../../pages/CurrentListPage/CurrentListPage';
 
 const DrawerLayout = ({ dispatch }) => {
   const [open, setOpen] = useState(false);
@@ -154,7 +154,7 @@ const DrawerLayout = ({ dispatch }) => {
         <Switch>
           {location.pathname === '/' && <Redirect to='/tasks' />}
           <Route exact component={HomePage} path='/tasks' />
-          <Route component={ListElementPage} path='/lists/:id' />
+          <Route component={CurrentListPage} path='/lists/:id' />
         </Switch>
         {/* <div className={classes.toolbar} />
         <Typography paragraph>

@@ -1,6 +1,7 @@
 const listsTypes = {
   CREATE_NEW_LIST: 'CREATE_NEW_LIST',
   GET_EXISTING_LIST: 'GET_EXISTING_LIST',
+  ADD_TODO_TO_THE_LIST: 'ADD_TODO_TO_THE_LIST',
 };
 
 export default listsTypes;

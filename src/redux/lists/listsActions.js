@@ -16,4 +16,9 @@ export const addNewList = (title) => {
 export const getList = (id) => ({
   type: types.GET_EXISTING_LIST,
   payload: id,
-})
+});
+
+export const addTodoToTheList = (title, id) => ({
+  type: types.ADD_TODO_TO_THE_LIST,
+  payload: { title, id },
+});
