@@ -156,13 +156,6 @@ const DrawerLayout = ({ dispatch }) => {
           <Route exact component={HomePage} path='/tasks' />
           <Route component={CurrentListPage} path='/lists/:id' />
         </Switch>
-        {/* <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-          doloribus autem corrupti cum aspernatur, doloremque a, quis aliquid,
-          neque deserunt rem fugiat. Doloremque quae sunt autem voluptatum
-          veritatis vero fuga.
-        </Typography> */}
       </main>
     </div>
   );

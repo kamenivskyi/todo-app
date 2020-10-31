@@ -21,9 +21,14 @@ const listsReducer = (state = initialState, { type, payload }) => {
     case types.ADD_TODO_TO_THE_LIST: {    
       return {
         ...state,
-        lists: addTodoToTheList(state.lists, payload.title, payload.id),
+        lists: addTodoToTheList({
+          arr: state.lists,
+          title: payload.title,
+          idForTodo: payload.idForTodo,
+          listId: payload.listId,
+        }),
       }
-    }
+    };
     default: 
       return state;
   }

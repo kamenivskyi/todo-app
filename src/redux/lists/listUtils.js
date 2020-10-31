@@ -1,16 +1,11 @@
-export const getExistingList = (arr, id) => {
-  const existingList = arr.find(item => item.id === id);
+export const getExistingList = (arr, id) => arr.find(item => item.id === id);
 
-  return existingList;
-}
-
-export const addTodoToTheList = (arr, title, listId) => {
-  // const list = getExistingList(arr, listId);
-  // const listIndex = arr.findIndex(list => list.id === listId);
+export const addTodoToTheList = (obj) => {
+  const { arr, title, idForTodo, listId } = obj;
 
   const newTodo = { 
     title, 
-    id: Math.random(), 
+    id: idForTodo, 
     important: false, 
     done: false
   };
@@ -22,18 +17,7 @@ export const addTodoToTheList = (arr, title, listId) => {
     return item;
   });
 
-  console.log('newArr', newArr)
+  console.log('listUtils', newArr)
 
-  // if (list) {
-    // const newTodo = { 
-    //   title, 
-    //   id: Math.random(), 
-    //   important: false, 
-    //   done: false
-    // };
-
-    // const newList = {...list, todos: [...list.todos, newTodo]};
-    // console.log("newList", newList);
-    return newArr;
-  // }
+  return newArr;
 }
