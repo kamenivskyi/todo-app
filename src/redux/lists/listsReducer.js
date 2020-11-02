@@ -1,5 +1,5 @@
 import types from "./listsTypes";
-import { addTodoToTheList, getExistingList } from "./listUtils";
+import { addTodoToTheList } from "./listUtils";
 
 const initialState = {
   lists: [],
@@ -12,11 +12,6 @@ const listsReducer = (state = initialState, { type, payload }) => {
       return { 
         ...state,
         lists: [...state.lists, payload],
-      };
-    case types.GET_EXISTING_LIST:
-      return {
-        ...state,
-        currentList: getExistingList(state.lists, payload),
       };
     case types.ADD_TODO_TO_THE_LIST: {    
       return {

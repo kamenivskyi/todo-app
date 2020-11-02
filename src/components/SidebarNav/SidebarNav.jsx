@@ -6,6 +6,7 @@ import {
   ListItemIcon, 
   ListItemText 
 } from '@material-ui/core';
+
 import { 
   Home,
   CheckCircleOutline, 
@@ -13,9 +14,6 @@ import {
   FormatListBulleted, 
   AllInclusive
 } from '@material-ui/icons';
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
-// import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-// import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 const SidebarNav = () => {
   return (

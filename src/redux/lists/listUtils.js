@@ -1,5 +1,3 @@
-export const getExistingList = (arr, id) => arr.find(item => item.id === id);
-
 export const addTodoToTheList = (obj) => {
   const { arr, title, idForTodo, listId } = obj;
 
@@ -17,7 +15,6 @@ export const addTodoToTheList = (obj) => {
     return item;
   });
 
-  console.log('listUtils', newArr)
 
   return newArr;
 }

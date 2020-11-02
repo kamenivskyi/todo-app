@@ -16,9 +16,9 @@ import {
 import Header from '../Header/Header';
 import Lists from '../Lists/Lists';
 import SidebarNav from '../SidebarNav/SidebarNav';
+import useInput from '../../hooks/useInput';
 import { addNewList } from '../../redux/lists/listsActions';
 import { Routes } from '../../routes';
-import useInput from '../../hooks/useInput';
 import { useStyles } from './LayoutStyles';
 
 const DrawerLayout = () => {

@@ -1,20 +1,19 @@
 import React from 'react';
 import clsx from 'clsx';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-// import TextField from '@material-ui/core/TextField';
-// import FormControl from '@material-ui/core/FormControl';
-// import Input from '@material-ui/core/Input';
-// import InputLabel from '@material-ui/core/InputLabel';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import SearchIcon from '@material-ui/icons/Search';
-import SettingsIcon from '@material-ui/icons/Settings';
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
-import MenuIcon from '@material-ui/icons/Menu';
+import { 
+  AppBar, 
+  Toolbar, 
+  IconButton, 
+  InputBase
+} from '@material-ui/core';
+
+import { 
+  AccountCircle,
+  Search, 
+  Settings, 
+  Menu,
+} from '@material-ui/icons';
 
 import { useStyles } from './HeaderStyles';
 
@@ -44,7 +43,7 @@ const Header = ({ open, handleDrawerOpen }) => {
           edge='start'
           className={iconButtonClasses}
         >
-          <MenuIcon />
+          <Menu />
         </IconButton>
         <div
           style={{
@@ -56,7 +55,7 @@ const Header = ({ open, handleDrawerOpen }) => {
         >
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <Search />
             </div>
             <InputBase
               placeholder='Search…'
@@ -74,7 +73,7 @@ const Header = ({ open, handleDrawerOpen }) => {
             }}
           >
             <IconButton style={{ color: 'white' }}>
-              <SettingsIcon />
+              <Settings />
             </IconButton>
             <IconButton style={{ color: 'white' }}>
               <AccountCircle />
